@@ -1,2 +1,2 @@
 # QuickManPath
-quick change or restore env path on windows
+Quick change or restore env path on windows, based on FLTK & nlohmann json.

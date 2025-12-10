@@ -1,0 +1,31 @@
+#include <windows.h>
+
+// 应用程序图标
+QuickPathManIcon ICON "QuickPathManIcon.ico"
+
+// 版本信息
+1 VERSIONINFO
+FILEVERSION 0,1,0,0
+PRODUCTVERSION 0,1,0,0
+FILEOS 0x40004L
+FILETYPE 0x1L
+{
+    BLOCK "StringFileInfo"
+    {
+        BLOCK "080404b0"
+        {
+            VALUE "CompanyName", "QuickManPath"
+            VALUE "FileDescription", "QuickManPath - 环境变量管理工具"
+            VALUE "FileVersion", "0.1.0"
+            VALUE "InternalName", "QuickManPath"
+            VALUE "LegalCopyright", "Copyright (C) 2024"
+            VALUE "OriginalFilename", "QuickManPath.exe"
+            VALUE "ProductName", "QuickManPath"
+            VALUE "ProductVersion", "0.1.0"
+        }
+    }
+    BLOCK "VarFileInfo"
+    {
+        VALUE "Translation", 0x804, 1200
+    }
+}
