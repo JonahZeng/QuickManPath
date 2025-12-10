@@ -61,7 +61,7 @@ jobs:
     - name: Configure CMake
       run: |
         $env:CMAKE_PREFIX_PATH = "$PWD/fltk_install"
-        cmake -B build -G "Visual Studio 17 2022" -A x64 -DCMAKE_BUILD_TYPE=${{ matrix.build_type }}
+        cmake -B build -G "Visual Studio 17 2022" -A x64
         
     - name: Build
       run: |
@@ -69,7 +69,7 @@ jobs:
         
     - name: Verify Build
       run: |
-        $exePath = "build/bin/${{ matrix.build_type }}/QuickManPath.exe"
+        $exePath = "bin/${{ matrix.build_type }}/QuickManPath.exe"
         if (Test-Path $exePath) {
           Write-Host "✓ Build successful: $exePath"
           $fileInfo = Get-Item $exePath
@@ -114,15 +114,15 @@ jobs:
           exit 1
         }
         
-    - name: Upload Build Artifacts
-      if: matrix.build_type == 'Release'
-      uses: actions/upload-artifact@v4
-      with:
-        name: QuickManPath-Windows-${{ matrix.build_type }}
-        path: |
-          build/*.zip
-          build/*.exe
-        retention-days: 30
+    # - name: Upload Build Artifacts
+    #   if: matrix.build_type == 'Release'
+    #   uses: actions/upload-artifact@v4
+    #   with:
+    #     name: QuickManPath-Windows-${{ matrix.build_type }}
+    #     path: |
+    #       build/*.zip
+    #       build/*.exe
+    #     retention-days: 30
         
     - name: Create Release
       if: startsWith(github.ref, 'refs/tags/') && matrix.build_type == 'Release'
@@ -137,11 +137,11 @@ jobs:
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         
-    - name: Upload Debug Symbols
-      if: matrix.build_type == 'Debug'
-      uses: actions/upload-artifact@v4
-      with:
-        name: QuickManPath-Windows-Debug-Symbols
-        path: |
-          build/bin/Debug/*.pdb
-        retention-days: 7
+    # - name: Upload Debug Symbols
+    #   if: matrix.build_type == 'Debug'
+    #   uses: actions/upload-artifact@v4
+    #   with:
+    #     name: QuickManPath-Windows-Debug-Symbols
+    #     path: |
+    #       build/bin/Debug/*.pdb
+    #     retention-days: 7
